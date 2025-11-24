@@ -1,0 +1,23 @@
+{
+  "name": "Print-Html-2-Pdf",
+  "version": "0.1.0",
+  "description": "Browser-side HTML to PDF printing utility",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "html",
+    "pdf",
+    "browser",
+    "print",
+    "rtl"
+  ],
+  "author": "AQ",
+  "license": "MIT",
+  "dependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.53.3"
+  }
+}
