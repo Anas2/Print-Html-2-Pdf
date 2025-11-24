@@ -3,14 +3,11 @@ const terser = require('@rollup/plugin-terser').default;
 module.exports = {
     input: "src/index.js",
     output: {
-        file: "dist/easyhtml2pdf-browser.js",
+        file: "dist/print-html-2-pdf.js",
         format: "umd",
-        name: "easyhtml2pdfBrowser",
-        globals: {
-            jspdf: "jspdf",
-            html2canvas: "html2canvas"
-        }
+        name: "PrintHtmlToPdf",
+        sourcemap: false
     },
-    external: ["jspdf", "html2canvas"],
-    plugins: [terser()],
+    // Removed jspdf and html2canvas, no external dependencies
+    plugins: [terser()]
 };
