@@ -1,5 +1,5 @@
 {
-  "name": "Print-Html-2-Pdf",
+  "name": "print-html-2-pdf",
   "version": "0.1.0",
   "description": "Browser-side HTML to PDF printing utility",
   "main": "src/index.js",
