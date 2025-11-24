@@ -70,7 +70,7 @@ You can include this library in multiple ways depending on your project setup.
 Simply include the JS file in your HTML page:
 
 ```html
-<script src="dist/print-html-2-pdf.js"></script>
+<script src="https://print-html-2-pdf.pages.dev/print-html-2-pdf.js"></script>
 ```
 
 ### **Option 2 — NPM / Frontend Frameworks**
