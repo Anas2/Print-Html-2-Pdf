@@ -1,8 +1,9 @@
 {
-  "name": "print-html-2-pdf",
+  "name": "printhtml2pdf",
   "version": "0.1.0",
   "description": "Browser-side HTML to PDF printing utility",
-  "main": "src/index.js",
+  "main": "dist/printhtml2pdf.js",
+
   "scripts": {
     "build": "rollup -c",
     "prepublish": "npm run build"
@@ -13,6 +14,10 @@
     "browser",
     "print",
     "rtl"
+  ],
+   "files": [
+    "dist",
+    "README.md"
   ],
   "author": "AQ",
   "license": "MIT",
