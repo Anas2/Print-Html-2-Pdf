@@ -1,8 +1,8 @@
 {
-  "name": "printhtml2pdf",
+  "name": "print-html-2-pdf",
   "version": "0.1.1",
   "description": "Browser-side HTML to PDF printing utility",
-  "main": "dist/printhtml2pdf.js",
+  "main": "dist/print-html-2-pdf.js",
   "scripts": {
     "build": "rollup -c",
     "prepublish": "npm run build"
