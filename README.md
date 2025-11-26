@@ -6,6 +6,7 @@ A super-simple browser library to print any HTML element as a PDF using the brow
 - Print any HTML element as a PDF (or paper) using the browser's print dialog
 - Supports LTR and RTL content (English, Urdu, Arabic, etc.)
 - Selectable/copyable text, real tables, and CSS styling
+- Full CSS support, including external stylesheets 
 - No dependencies
 - Works in all modern browsers
 
@@ -58,6 +59,7 @@ A super-simple browser library to print any HTML element as a PDF using the brow
 * Selectable/copyable text
 * Full CSS support
 * RTL support (Urdu, Arabic, Persian)
+* Full CSS support, including external stylesheets 
 * No dependencies
 * Works in all modern browsers
 
@@ -136,7 +138,25 @@ PrintHtmlToPdf.print({
     html: myTemplate,
     styles: "table{width:100%;border-collapse:collapse;} th,td{text-align:left;}"
 });
+
 ```
+## Using External CSS Files
+
+You can include external CSS files to style your PDF content using the cssFiles option:
+
+<link rel="stylesheet" href="ss.css">
+<button onclick="printWithCss()">Print with CSS</button>
+
+<script>
+function printWithCss() {
+    PrintHtmlToPdf.print({
+        element: document.getElementById("report"),
+        styles: "body{margin:0;padding:0;}" // optional inline styles
+        cssFiles: ["styles.css"],   // array of external CSS files
+    });
+}
+</script>
+
 
 ## Advanced Example – Static HTML + Template Stored in JS
 
@@ -167,7 +187,11 @@ const cardTemplate = `
 `;
 
 function downloadCardPdf() {
-    PrintHtmlToPdf.print({ html: cardTemplate });
+    PrintHtmlToPdf.print({ 
+        html: cardTemplate 
+        styles: "body{margin:0;padding:0;}" // optional inline styles
+        cssFiles: ["styles.css"], // external CSS
+    });
 }
 </script>
 ```
@@ -179,6 +203,7 @@ PrintHtmlToPdf.print({
     element: HTMLElement, // print an existing DOM element
     html: string,         // OR print HTML stored in JS variable
     styles: string        // optional CSS to inject
+    cssFiles: array       // optional array of external CSS file URLs
 });
 ```
 

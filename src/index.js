@@ -4,17 +4,10 @@
  *   - element: DOM Element or HTML string (required)
  *   - styles: string, optional CSS to inject into print document
  */
-export function print({ element, styles = "" }) {
-  if (!element) throw new Error("`element` is required to print");
 
-  let htmlContent;
-  if (typeof element === "string") {
-    htmlContent = element;
-  } else if (element instanceof Element) {
-    htmlContent = element.innerHTML;
-  } else {
-    throw new Error("`element` must be a DOM Element or HTML string");
-  }
+export function print({ element, html, styles = "", cssFiles = [] }) {
+  const content = element || html;
+  if (!content) throw new Error("`element` or `html` is required");
 
   const iframe = document.createElement("iframe");
   iframe.style.position = "fixed";
@@ -23,32 +16,42 @@ export function print({ element, styles = "" }) {
   iframe.style.width = "0";
   iframe.style.height = "0";
   iframe.style.border = "0";
+  iframe.style.zIndex = "-1";
   document.body.appendChild(iframe);
 
   const doc = iframe.contentDocument || iframe.contentWindow.document;
 
-  // Clear existing content
-  doc.body.innerHTML = "";
+  // Create head and body
+  const head = doc.head || doc.createElement("head");
+  const body = doc.body || doc.createElement("body");
+  doc.documentElement.appendChild(head);
+  doc.documentElement.appendChild(body);
 
-  // Add styles
-  if (styles) {
-    const styleEl = doc.createElement("style");
-    styleEl.textContent = styles;
-    doc.head.appendChild(styleEl);
-  }
+  // Add CSS files
+  cssFiles.forEach(f => {
+    const link = doc.createElement("link");
+    link.rel = "stylesheet";
+    link.href = f;
+    head.appendChild(link);
+  });
+
+  // Add styles including print margin reset
+  const styleEl = doc.createElement("style");
+  styleEl.textContent = `
+    // @page { margin: 0; size: auto; }
+    // body { margin: 0; padding: 0; }
+    ${styles}
+  `;
+  head.appendChild(styleEl);
 
   // Add content
-  const container = doc.createElement("div");
-  container.innerHTML = htmlContent;
-  doc.body.appendChild(container);
+  body.innerHTML = typeof content === "string" ? content : content.innerHTML;
 
-  // Print once iframe is ready
-  iframe.onload = () => {
+  // Wait for images/fonts to load
+  setTimeout(() => {
     iframe.contentWindow.focus();
     iframe.contentWindow.print();
-    setTimeout(() => document.body.removeChild(iframe), 1000);
-  };
-
-  // Trigger onload manually in case content is already loaded
-  iframe.onload();
+    setTimeout(() => document.body.removeChild(iframe), 500);
+  }, 250);
 }
+
