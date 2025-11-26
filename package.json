@@ -1,6 +1,6 @@
 {
   "name": "print-html-2-pdf",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Browser-side HTML to PDF printing utility",
   "main": "dist/print-html-2-pdf.js",
   "scripts": {
