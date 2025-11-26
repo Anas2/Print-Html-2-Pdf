@@ -144,6 +144,7 @@ PrintHtmlToPdf.print({
 
 You can include external CSS files to style your PDF content using the cssFiles option:
 
+```html
 <link rel="stylesheet" href="ss.css">
 <button onclick="printWithCss()">Print with CSS</button>
 
@@ -157,6 +158,7 @@ function printWithCss() {
 }
 </script>
 
+```
 
 ## Advanced Example – Static HTML + Template Stored in JS
 
