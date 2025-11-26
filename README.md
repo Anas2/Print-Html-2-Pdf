@@ -204,7 +204,7 @@ function downloadCardPdf() {
 PrintHtmlToPdf.print({
     element: HTMLElement, // print an existing DOM element
     html: string,         // OR print HTML stored in JS variable
-    styles: string        // optional CSS to inject
+    styles: string,        // optional CSS to inject
     cssFiles: array       // optional array of external CSS file URLs
 });
 ```
